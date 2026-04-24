@@ -31,12 +31,32 @@ Inside `.project-system/`:
 
 ## How To Use It
 
-1. Copy this template into a new project folder.
-2. Rename the root folder to match the project name.
-3. Run `project-folder-bootstrap.skill` if you want Claude to create or retrofit the standard structure.
-4. Customize `.project-system/folder-triage-config.md` for the project.
-5. Put all brand-new post-bootstrap files into `_inbox/`.
-6. Run `inbox-triage` to move those files into their final folders.
+### Install the Skills
+
+**VS Code (GitHub Copilot):**
+
+Copy the skill source directories into your Copilot skills folder:
+
+```bash
+cp -r .project-system/skill-sources/project-folder-bootstrap ~/.copilot/skills/
+cp -r .project-system/skill-sources/inbox-triage ~/.copilot/skills/
+```
+
+**Claude Code:**
+
+Copy the skill source directories into your Claude skills folder:
+
+```bash
+cp -r .project-system/skill-sources/project-folder-bootstrap ~/.claude/skills/
+cp -r .project-system/skill-sources/inbox-triage ~/.claude/skills/
+```
+
+### Use the Skills
+
+1. Open the project folder you want to organize and ask the agent to bootstrap it.
+2. Customize the folder structure and routing rules in `.project-system/folder-triage-config.md` — this is the single source of truth that controls which folders exist, how files get routed, and what naming conventions apply.
+3. Put all brand-new post-bootstrap files into `_inbox/`.
+4. Ask the agent to triage `_inbox/` to move files into their final folders.
 
 ## Visible Work Folders
 
