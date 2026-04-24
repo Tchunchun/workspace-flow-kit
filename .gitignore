@@ -33,6 +33,12 @@ build/
 # Project transient content (intake inbox)
 _inbox/*
 
+# Exclude project-specific discovery, delivery, and meeting notes
+# (only skills, control plane, and templates should be in template repo)
+02-discovery/
+04-delivery/
+**/meetings/
+
 # OS-specific
 Thumbs.db
 
