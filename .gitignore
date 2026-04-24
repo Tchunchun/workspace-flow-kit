@@ -1,0 +1,46 @@
+# macOS
+.DS_Store
+**/.DS_Store
+.AppleDouble/
+.LSOverride
+._*
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Development environments
+node_modules/
+venv/
+.venv/
+env/
+.env
+.env.local
+.env.*.local
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.coverage
+dist/
+build/
+
+# Project transient content (intake inbox)
+_inbox/*
+
+# OS-specific
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Build and local outputs
+.task-cache/
+*.tmp
+.temp/
