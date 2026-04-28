@@ -1,4 +1,4 @@
-# CLAUDE.md — Agent Instructions
+# AGENTS.md — Agent Instructions
 
 ## What This Repo Is
 
@@ -44,7 +44,7 @@
 - Archive superseded documents in `docs/archive/`
 - Keep build artifacts out of the workspace structure
 
-## Behavior Rules For Claude
+## Behavior Rules For Codex
 
 - When asked to file a document, check `.project-system/folder-triage-config.md` first
 - When asked to create a brand-new document after bootstrap, create it in `_inbox/`

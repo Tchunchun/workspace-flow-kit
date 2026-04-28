@@ -13,6 +13,13 @@
 ## Project Structure
 
 - `_inbox/` is the intake folder for all brand-new post-bootstrap files
+- `01-problem/` holds problem framing, research, findings, and hypotheses
+- `02-design/` holds flows, specs, architecture, and solution shaping
+- `03-comms/` holds stakeholder updates, launches, slides, and external drafts
+- `04-evals/` holds rubrics, test plans, QA evidence, metrics, and results
+- `05-ops/` holds setup, onboarding, templates, process, and configuration
+- `06-code/` holds code repositories and implementation workspaces
+- `docs/` holds final/reference artefacts and archive material
 - `.project-system/project-context.md` captures current priorities and working context
 - `.project-system/folder-triage-config.md` defines folder and routing rules
 - `.project-system/inventory.md` maps important artefacts

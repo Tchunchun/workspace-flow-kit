@@ -8,6 +8,9 @@ Use this file as a lightweight map of important project artefacts.
 
 - `README.md` — human-facing overview
 - `CLAUDE.md` — agent-facing instructions
+- `AGENTS.md` — Codex-compatible agent instructions
 - `.project-system/folder-triage-config.md` — canonical routing rules
-- `inbox-triage.skill` — packaged triage skill
-- `Proposal/` — proposal pack for future direction and template usage
+- `workspace-flow-bootstrap.skill` — packaged bootstrap skill
+- `workspace-flow-triage.skill` — packaged triage skill
+- `_inbox/flow-first-ai-pm-file-organization-guide.md` — pending source guide for flow-first organization
+- `example-project/` — sample project scaffold to align with the new Workspace Flow Kit layout

@@ -6,7 +6,7 @@ Use this file to keep a short audit trail of triage decisions while the project 
 
 | Date | File | Action | Destination | Why |
 |---|---|---|---|---|
-| YYYY-MM-DD | `example-file.md` | moved | `04-delivery/specs/` | filename matched `spec`; content confirmed PRD |
+| YYYY-MM-DD | `example-file.md` | moved | `02-design/` | filename matched `spec`; content confirmed PRD |
 
 ## Entries
 

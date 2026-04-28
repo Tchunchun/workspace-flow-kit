@@ -22,10 +22,12 @@
 
 | Workstream | Main folder | Status | Key artefacts |
 |---|---|---|---|
-| Strategy | `01-strategy/` | [status] | [files] |
-| Discovery | `02-discovery/` | [status] | [files] |
-| Delivery | `04-delivery/` | [status] | [files] |
-| Comms | `05-comms/` | [status] | [files] |
+| Problem | `01-problem/` | [status] | [files] |
+| Design | `02-design/` | [status] | [files] |
+| Comms | `03-comms/` | [status] | [files] |
+| Evals | `04-evals/` | [status] | [files] |
+| Ops | `05-ops/` | [status] | [files] |
+| Code | `06-code/` | [status] | [files] |
 
 ## Where Agents Should Look First
 

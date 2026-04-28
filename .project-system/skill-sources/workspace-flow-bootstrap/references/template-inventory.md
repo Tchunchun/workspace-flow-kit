@@ -28,10 +28,12 @@ Use it to:
 
 | Folder | Why it matters now | Representative artefacts |
 |---|---|---|
-| `01-strategy/` | [reason] | [files] |
-| `02-discovery/` | [reason] | [files] |
-| `04-delivery/specs/` | [reason] | [files] |
-| `05-comms/slides/` | [reason] | [files] |
+| `01-problem/` | [reason] | [files] |
+| `02-design/` | [reason] | [files] |
+| `03-comms/` | [reason] | [files] |
+| `04-evals/` | [reason] | [files] |
+| `05-ops/` | [reason] | [files] |
+| `06-code/` | [reason] | [files] |
 
 ## Key Artefacts
 

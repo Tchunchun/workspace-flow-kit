@@ -1,177 +1,94 @@
 # folder-triage-config.md
 
-Canonical source of truth for this project's folder structure, file-routing logic, and naming rules. Read by the `inbox-triage` skill.
+Canonical source of truth for this project's folder structure, file-routing logic, and naming rules. Read by the `workspace-flow-triage` skill.
 
 ## 1. Folder Structure
 
-### Folder Tree
-
 ```text
-Project-Name/
-├── README.md              # Human-facing overview
-├── CLAUDE.md              # Agent-facing instructions
-├── .project-system/       # Hidden control plane for routing and context
-│   ├── folder-triage-config.md
-│   ├── project-context.md
-│   ├── inventory.md
-│   └── routing-log.md
-├── _inbox/                # Scratchpad: quick downloads, unreviewed notes, temp files
-├── meetings/              # Global meetings (chronological: YYYY-MM-DD-topic.md)
-├── 01-strategy/           # The "Why": OKRs, roadmaps, business cases, north-star docs
-├── 02-discovery/          # The "Problem": user research, interviews, competitive analysis
-│   ├── findings/          # Synthesised insights, key themes, annotated screenshots
-│   └── research/          # Raw inputs: interviews, surveys, competitor analysis, SVGs
-├── 03-design/             # The "Vision": UI/UX assets, wireframes, design system notes
-├── 04-delivery/           # The "Execution": PRDs, agile planning, QA, metrics
-│   ├── qa-and-testing/    # Bug screenshots, test plans, UAT results
-│   ├── specs/             # PRDs, feature specs, technical design docs
-│   └── metrics/           # Usage exports, analytics dashboards, eval results
-├── 05-comms/              # The "Story": go-to-market, internal updates, sales enablement
-│   ├── announcements/     # Internal team or company-wide updates
-│   ├── external/          # Blog drafts, press releases, partner one-pagers
-│   └── slides/            # Decks (.pptx) and web prototypes (.html)
-├── 06-code/               # The "Engine": git repositories ONLY
-│   └── [repos]/
-├── 07-operations/         # The "System": how the team runs
-│   ├── config/            # MDM profiles, environment setup scripts, machine config
-│   ├── templates/         # Blank reusable starters (completed outputs move elsewhere)
-│   └── onboarding/        # Guides and checklists for new team members
-└── docs/                  # The "Showcase": finalised artefacts for outside the core team
-    └── archive/           # Superseded versions only
+example-project/
+├── _inbox/
+├── 01-problem/
+├── 02-design/
+├── 03-comms/
+├── 04-evals/
+├── 05-ops/
+├── 06-code/
+├── docs/
+│   └── archive/
+├── README.md
+├── CLAUDE.md
+└── .project-system/
+    ├── folder-triage-config.md
+    ├── project-context.md
+    ├── inventory.md
+    └── routing-log.md
 ```
 
-### Folder Summary
+| Folder | Use for |
+|---|---|
+| `_inbox/` | Brand-new untriaged files |
+| `01-problem/` | Problem framing, research, findings, hypotheses |
+| `02-design/` | Flows, specs, requirements, architecture, UX/UI |
+| `03-comms/` | Updates, launch notes, memos, slides, external drafts |
+| `04-evals/` | Rubrics, test plans, QA captures, benchmark results, metrics |
+| `05-ops/` | Setup, onboarding, templates, runbooks, configuration |
+| `06-code/` | Repositories and implementation workspaces |
+| `docs/` | Final/reference artefacts |
+| `docs/archive/` | Superseded final artefacts |
 
-| Folder | Zone | Key rule |
-|--------|------|----------|
-| `_inbox/` | Scratchpad | Always empty after triage |
-| `meetings/` | Decisions | One file per meeting, `YYYY-MM-DD-topic.md` |
-| `01-strategy/` | Why | Living docs; date suffix, not version suffix |
-| `02-discovery/research/` | Problem (raw) | Interviews, surveys, SVGs, comparisons |
-| `02-discovery/findings/` | Problem (synthesised) | Insights, themes, annotated screenshots |
-| `03-design/` | Vision | Wireframes, mockups, design system notes |
-| `04-delivery/specs/` | Execution | In-progress PRDs; move to `docs/` when final |
-| `04-delivery/qa-and-testing/` | Execution | Bug screenshots, test plans, UAT |
-| `04-delivery/metrics/` | Execution | Eval output, usage data, CSVs |
-| `05-comms/slides/` | Story | `.pptx` decks and `.html` prototypes |
-| `05-comms/announcements/` | Story | Internal updates |
-| `05-comms/external/` | Story | Partner content, blog drafts |
-| `06-code/` | Engine | Every child must be a git repo |
-| `07-operations/config/` | System | One copy per file, no duplicates |
-| `07-operations/templates/` | System | Blanks only; outputs move elsewhere |
-| `07-operations/onboarding/` | System | New joiner guides and checklists |
-| `docs/` | Showcase | Done only — nothing in progress |
-| `docs/archive/` | Showcase | Superseded versions only |
+## 2. Lifecycle Rules
 
-### Bootstrap And File Lifecycle
+- `workspace-flow-bootstrap` may create the initial scaffold directly in final locations.
+- After bootstrap, every brand-new file goes to `_inbox/` first.
+- `workspace-flow-triage` moves files from `_inbox/` only after presenting a routing proposal.
+- Edits to existing files stay in place.
+- Do not create version-suffixed duplicates such as `_v2`, `_FINAL`, or `_NEW`.
 
-- **Bootstrap exception:** `project-folder-bootstrap` may create the initial scaffold directly in final locations.
-- **Post-bootstrap intake:** After bootstrap, every brand-new file must go to `_inbox/` first.
-- **Triage is separate:** Routing rules are used when filing files out of `_inbox/`, not when creating them.
-- **Edits stay in place:** Changes to existing files happen in their current location.
-- **Archive superseded finals:** Move superseded final artifacts to `docs/archive/` instead of creating version-suffixed duplicates.
+## 3. Routing Rules
 
-### Structure Rules
+### Filename patterns
 
-- **One home per file.** Do not duplicate the same artifact across folders.
-- **Max 2 levels deep.** Never nest deeper than `folder/sub-folder/file.ext`.
-- **No loose working files at root.** Keep project files inside named folders.
-- **Keep operating metadata in `.project-system/`.** Do not scatter config files across root.
-- **No version suffixes.** Never use `_v2`, `_FINAL`, `_NEW`.
-- **No build artefacts.** `.venv/`, `node_modules/`, `dist/` belong in `.gitignore`.
+| If filename contains | Route to |
+|---|---|
+| `problem`, `pain`, `hypothesis`, `opportunity`, `finding`, `insight`, `theme`, `research`, `interview`, `survey`, `analysis` | `01-problem/` |
+| `design`, `flow`, `wireframe`, `mockup`, `ux`, `ui`, `architecture`, `solution`, `spec`, `prd`, `requirements` | `02-design/` |
+| `announcement`, `update`, `launch`, `memo`, `stakeholder`, `one-pager`, `blog`, `press`, `sales`, `deck`, `slides`, `presentation`, `meeting` | `03-comms/` |
+| `eval`, `evaluation`, `rubric`, `benchmark`, `metric`, `results`, `dashboard`, `bug`, `qa`, `test`, `uat`, `screenshot`, `capture` | `04-evals/` |
+| `onboarding`, `getting-started`, `setup`, `config`, `template`, `process`, `runbook`, `workflow` | `05-ops/` |
+| `repo`, `app`, `skill`, `source`, `implementation`, `code` | `06-code/` |
+| `final`, `published`, `reference`, `handoff`, `guide` | `docs/` |
 
-## 2. Routing Rules
+### Extension defaults
 
-Rules are evaluated in order. First strong match wins.
-
-These routing rules are for filing files from `_inbox/` into their final destination folders. They do not change the rule that all brand-new post-bootstrap files must be created in `_inbox/` first.
-
-### 2.1 Filename Pattern Rules
-
-| If the filename contains… | Route to |
-|--------------------------|----------|
-| `meeting`, `standup`, `sync`, `retro`, `review`, `steerco`, `agenda` | `meetings/` |
-| `okr`, `roadmap`, `north-star`, `strategy`, `vision`, `prioriti`, `business-case` | `01-strategy/` |
-| `interview`, `survey`, `research`, `comparison`, `analysis`, `competitive` | `02-discovery/research/` |
-| `finding`, `insight`, `theme`, `synthesis` | `02-discovery/findings/` |
-| `wireframe`, `mockup`, `design`, `ui`, `ux`, `flow`, `prototype` | `03-design/` |
-| `spec`, `prd`, `requirements`, `design-doc`, `technical-doc` | `04-delivery/specs/` |
-| `bug`, `qa`, `test`, `uat`, `screenshot`, `capture` | `04-delivery/qa-and-testing/` |
-| `eval`, `metric`, `benchmark`, `usage`, `analytics`, `results`, `dashboard` | `04-delivery/metrics/` |
-| `announcement`, `update`, `launch`, `release-note` | `05-comms/announcements/` |
-| `one-pager`, `partner`, `blog`, `press`, `external`, `sales` | `05-comms/external/` |
-| `deck`, `slides`, `presentation`, `steerco` | `05-comms/slides/` |
-| `onboarding`, `new-joiner`, `getting-started` | `07-operations/onboarding/` |
-| `template` | `07-operations/templates/` |
-| `config`, `setup`, `mobileconfig`, `mdm`, `environment` | `07-operations/config/` |
-
-### 2.2 Extension Rules
-
-| Extension | Route to | Notes |
-|-----------|----------|-------|
-| `.pptx` | `05-comms/slides/` | |
-| `.html` | `05-comms/slides/` | Assumed to be a web prototype |
-| `.mobileconfig` | `07-operations/config/` | |
-| `.sh`, `.ps1`, `.bat` | `07-operations/config/` | Setup scripts |
-| `.csv`, `.xlsx` | `04-delivery/metrics/` | Unless filename pattern overrides |
-| `.svg` | `02-discovery/research/` | Diagrams |
-| `.fig` | `03-design/` | Figma exports |
-| `.png`, `.jpg`, `.jpeg`, `.gif` | `04-delivery/qa-and-testing/` | Default: assume QA capture |
-| `.pdf` | `docs/` | Assumed to be a final deliverable |
-| `.docx` | `docs/` | Unless filename pattern routes elsewhere |
+| Extension | Route to |
+|---|---|
+| `.pptx` | `03-comms/` |
+| `.html`, `.svg`, `.fig` | `02-design/` |
+| `.csv`, `.xlsx`, `.png`, `.jpg`, `.jpeg`, `.gif` | `04-evals/` |
+| `.sh`, `.ps1`, `.bat`, `.mobileconfig` | `05-ops/` |
+| `.pdf`, `.docx` | `docs/` |
 | `.md` | Content peek required |
 
-### 2.3 Content Peek Rules
+### Content peek for Markdown
 
-For `.md` files, inspect the first 20 lines.
-For `.docx` files, inspect the first paragraphs when possible.
+| If content contains | Route to |
+|---|---|
+| `## Problem`, `## Pain`, `## Findings`, `## Insights`, `# Research` | `01-problem/` |
+| `## Flow`, `## Design`, `## Architecture`, `## Requirements`, `## Acceptance criteria`, `# PRD`, `# Spec` | `02-design/` |
+| `# Announcement`, `## TL;DR`, `## Stakeholders`, `## Launch` | `03-comms/` |
+| `## Test plan`, `## UAT`, `## Evaluation`, `## Rubric`, `## Results`, `## Metrics` | `04-evals/` |
+| `## Setup`, `## Onboarding`, `## Runbook`, `## Process`, `## Configuration` | `05-ops/` |
 
-| If the content contains… | Route to |
-|--------------------------|----------|
-| `## Attendees`, `## Action items`, date in H1 title | `meetings/` |
-| `# OKR`, `## Objective`, `Q1`/`Q2`/`Q3`/`Q4` + goal language | `01-strategy/` |
-| `# Roadmap`, `## Now`, `## Next`, `## Later` | `01-strategy/` |
-| `# Research`, `## Methodology`, `## Participants` | `02-discovery/research/` |
-| `## Findings`, `## Insights`, `## Themes`, `## Key takeaways` | `02-discovery/findings/` |
-| `# PRD`, `# Spec`, `## Problem statement`, `## Success metrics`, `## Acceptance criteria` | `04-delivery/specs/` |
-| `## Test plan`, `## UAT`, `## Bug report` | `04-delivery/qa-and-testing/` |
-| `# Announcement`, `## TL;DR`, `All,` + internal memo language | `05-comms/announcements/` |
+## 4. Ambiguous Cases
 
-### 2.4 Ambiguous Cases
+Ask before moving:
 
-Always flag these for confirmation:
-
-- markdown files with no clear signal
-- conflicting filename and content signals
+- markdown files with weak signals
+- conflicting filename, extension, and content signals
 - folders containing `.git/`
-- images that may be either design assets or QA captures
-- files that already appear to be in the correct location
+- images that may be design assets instead of QA/eval captures
+- files whose final/reference status is unclear
 
-## 3. Naming Rules
+## 5. Naming Rules
 
-| Type | Convention | Example |
-|------|-----------|---------|
-| Meeting notes | `YYYY-MM-DD-topic.md` | `2026-04-24-kickoff.md` |
-| Research / specs | `kebab-case.md` | `user-interview-findings.md` |
-| Presentations | `kebab-case.pptx` | `q2-roadmap-review.pptx` |
-| Templates | `template-description.ext` | `template-prd.md` |
-| Archived files | Original name, moved to `docs/archive/` | |
-
-### Naming Corrections
-
-| Violation | Example | Suggested fix |
-|-----------|---------|---------------|
-| Spaces in filename | `My Report.md` | `my-report.md` |
-| Underscores | `plaid_spec.md` | `plaid-spec.md` |
-| Version suffix | `report_v2.md` | `report.md` |
-| All caps | `PLAID_SPEC.md` | `plaid-spec.md` |
-| Meeting note missing date | `steerco-notes.md` | `2026-04-24-steerco.md` |
-
-## 4. How Claude Should Use This File
-
-- Read this file before deciding where a document belongs.
-- Treat `_inbox/` as the required intake point for all brand-new post-bootstrap files.
-- Validate destinations against the folder structure section.
-- Use routing rules in this order when triaging from `_inbox/`: filename, extension, content peek, then ask.
-- Suggest naming corrections when the naming rules are violated.
-- Do not create version-suffixed duplicates.
+Use kebab-case filenames. Preserve file extensions. Strip `_v2`, `_FINAL`, and `_NEW` rather than keeping version-suffixed duplicates.

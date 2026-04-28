@@ -19,7 +19,7 @@ Read these files before making organisational changes.
 
 Bootstrap exception:
 
-- `project-folder-bootstrap` may create the initial scaffold directly in final locations.
+- `workspace-flow-bootstrap` may create the initial scaffold directly in final locations.
 - This exception does not apply to normal post-bootstrap file creation.
 
 ## Triage Workflow
@@ -46,3 +46,4 @@ When asked to create a new document:
 - do not move files without explanation when confidence is low
 - do not create version-suffixed duplicates such as `_v2`, `_FINAL`, or `_NEW`
 - do not assume a file is final just because it is a `.pdf` or `.docx` without checking context
+- put project repos and implementation folders under `06-code/`

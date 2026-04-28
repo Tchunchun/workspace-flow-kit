@@ -1,13 +1,13 @@
-# file-system-template
+# Workspace Flow Kit
 
-A reusable workspace template for PMs, designers, researchers, and engineers who want a consistent project folder structure with explicit intake and filing rules.
+A reusable workspace template for PMs, designers, researchers, and engineers who want a flow-first project structure with explicit intake and filing rules.
 
 ## What This Template Provides
 
-- a standard work-folder layout for strategy, discovery, design, delivery, comms, code, operations, and docs
+- a standard work-folder layout for problem framing, design, comms, evals, ops, code, and docs
 - a hidden `.project-system/` control plane for routing rules and project metadata
-- a bootstrap skill for initializing or retrofitting a project folder
-- a triage skill for filing new documents from `_inbox/`
+- `workspace-flow-bootstrap` for initializing or retrofitting a project folder
+- `workspace-flow-triage` for filing new documents from `_inbox/`
 
 ## Workspace Structure
 
@@ -15,8 +15,8 @@ At the root:
 
 - `README.md` — human-facing overview and usage guide
 - `CLAUDE.md` — agent-facing operating instructions
-- `project-folder-bootstrap.skill` — packaged skill for initializing the folder system
-- `inbox-triage.skill` — packaged skill for filing `_inbox/` contents
+- `workspace-flow-bootstrap.skill` — packaged skill for initializing the folder system
+- `workspace-flow-triage.skill` — packaged skill for filing `_inbox/` contents
 - `_inbox/` — temporary intake folder for brand-new files after bootstrap
 - `.project-system/` — hidden routing and context metadata
 
@@ -38,8 +38,8 @@ Inside `.project-system/`:
 Copy the skill source directories into your Copilot skills folder:
 
 ```bash
-cp -r .project-system/skill-sources/project-folder-bootstrap ~/.copilot/skills/
-cp -r .project-system/skill-sources/inbox-triage ~/.copilot/skills/
+cp -r .project-system/skill-sources/workspace-flow-bootstrap ~/.copilot/skills/
+cp -r .project-system/skill-sources/workspace-flow-triage ~/.copilot/skills/
 ```
 
 **Claude Code:**
@@ -47,8 +47,8 @@ cp -r .project-system/skill-sources/inbox-triage ~/.copilot/skills/
 Copy the skill source directories into your Claude skills folder:
 
 ```bash
-cp -r .project-system/skill-sources/project-folder-bootstrap ~/.claude/skills/
-cp -r .project-system/skill-sources/inbox-triage ~/.claude/skills/
+cp -r .project-system/skill-sources/workspace-flow-bootstrap ~/.claude/skills/
+cp -r .project-system/skill-sources/workspace-flow-triage ~/.claude/skills/
 ```
 
 ### Use the Skills
@@ -60,25 +60,19 @@ cp -r .project-system/skill-sources/inbox-triage ~/.claude/skills/
 
 ## Visible Work Folders
 
-The standard structure is defined in `.project-system/folder-triage-config.md` and includes:
+The standard user-facing structure is defined in `.project-system/folder-triage-config.md` and includes:
 
-- `meetings/`
-- `01-strategy/`
-- `02-discovery/research/`
-- `02-discovery/findings/`
-- `03-design/`
-- `04-delivery/specs/`
-- `04-delivery/qa-and-testing/`
-- `04-delivery/metrics/`
-- `05-comms/slides/`
-- `05-comms/announcements/`
-- `05-comms/external/`
+- `_inbox/`
+- `01-problem/`
+- `02-design/`
+- `03-comms/`
+- `04-evals/`
+- `05-ops/`
 - `06-code/`
-- `07-operations/config/`
-- `07-operations/templates/`
-- `07-operations/onboarding/`
 - `docs/`
 - `docs/archive/`
+
+`.project-system/` remains as the hidden control plane even when the simplified tree is shown without it.
 
 ## Workflow
 
@@ -106,8 +100,8 @@ If you rename a folder, move existing files to the new location before relying o
 
 Packaged skills stay at the root for use. Their editable source lives under:
 
-- `.project-system/skill-sources/project-folder-bootstrap/`
-- `.project-system/skill-sources/inbox-triage/`
+- `.project-system/skill-sources/workspace-flow-bootstrap/`
+- `.project-system/skill-sources/workspace-flow-triage/`
 
 Rebuild the packaged archives with:
 

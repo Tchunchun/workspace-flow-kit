@@ -30,14 +30,24 @@ __pycache__/
 dist/
 build/
 
-# Project transient content (intake inbox)
-_inbox/*
+# Workspace Flow Kit repo policy
+# Track only root docs, packaged skills, .project-system skill/control files,
+# and example-project/. Keep local practice artifacts out of GitHub.
+/_inbox/*
+/01-problem/
+/02-design/
+/03-comms/
+/04-evals/
+/05-ops/
+/06-code/
+/docs/
 
-# Exclude project-specific discovery, delivery, and meeting notes
-# (only skills, control plane, and templates should be in template repo)
-02-discovery/
-04-delivery/
-**/meetings/
+# Historical/local scratch folders
+/EvolveDB/
+
+# Keep the example scaffold tracked even though it contains flow folders.
+!example-project/
+!example-project/**
 
 # OS-specific
 Thumbs.db

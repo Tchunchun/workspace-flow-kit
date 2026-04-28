@@ -28,10 +28,12 @@ Use it to:
 
 | Folder | Why it matters now | Representative artefacts |
 |---|---|---|
-| `01-strategy/` | [reason] | [files] |
-| `02-discovery/` | [reason] | [files] |
-| `04-delivery/specs/` | [reason] | [files] |
-| `05-comms/slides/` | [reason] | [files] |
+| `01-problem/` | [reason] | [files] |
+| `02-design/` | [reason] | `plaid-auth-spec.md` |
+| `03-comms/` | [reason] | `2026-04-24-meeting-notes-april.md` |
+| `04-evals/` | [reason] | `random-screenshot.png` |
+| `05-ops/` | [reason] | [files] |
+| `06-code/` | [reason] | [files] |
 
 ## Key Artefacts
 
